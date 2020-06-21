@@ -83,7 +83,7 @@ php bin/hyperf.php start 或者 php watch (热更新)
 ```
 
 ##### 浏览器访问项目
-![](screenshotome.png)
+![](screenshot/home.png)
 
 ### 扩展功能
 #### 生成model
