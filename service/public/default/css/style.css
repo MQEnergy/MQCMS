@@ -1,0 +1,50 @@
+body {
+    background: #f3f3f3;
+    font-weight: normal;
+    color: #333;
+    font-size: 14px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: 'iconfont';  /* project id 1638580 */
+    src: url('//at.alicdn.com/t/font_1638580_abkauom2v9.eot');
+    src: url('//at.alicdn.com/t/font_1638580_abkauom2v9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1638580_abkauom2v9.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1638580_abkauom2v9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1638580_abkauom2v9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1638580_abkauom2v9.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: #333;
+    font-size: 14px;
+}
+
+.primary {
+    width: 400px;
+    position: absolute;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.nav {
+    width: 200px;
+    margin: 0 auto;
+}

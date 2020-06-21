@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace %NAMESPACE%;
+
+use App\Controller\Admin\Plugins\BaseController;
+use Hyperf\Di\Annotation\Inject;
+use Hyperf\HttpServer\Annotation\Controller;
+use Hyperf\HttpServer\Annotation\Middleware;
+use App\Middleware\AuthMiddleware;
+use App\Service\Plugins\%SERVICE%;
+
+/**
+ * @Controller()
+ * @Middleware(AuthMiddleware::class)
+ * Class %CLASS%
+ * @package %NAMESPACE%
+ */
+class %CLASS% extends BaseController
+{
+    /**
+     * @Inject()
+     * @var %SERVICE%
+     */
+    public $logic;
+}
