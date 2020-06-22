@@ -83,6 +83,9 @@ php bin/hyperf.php start 或者 php watch (热更新)
 ```
 
 ##### 浏览器访问项目
+```
+http://127.0.0.1:9527
+```
 ![](screenshot/home.png)
 
 ### 扩展功能
@@ -182,7 +185,7 @@ plugin demo installed successfully!
 
 
 # 访问地址
-http://127.0.0.1:9502/admin/plugins/demo/index/index
+http://127.0.0.1:9527/admin/plugins/demo/index/index
 出现结果：
 {
     "method": "GET",
