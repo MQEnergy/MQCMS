@@ -9,9 +9,15 @@ MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。
 
 ### 开发文档
 文档正在路上...
-
-前端项目仓库：
+单独前端项目仓库：
 https://github.com/MQEnergy/MQCMS-admin
+
+### 项目结构
+```
+MQCMS                           
+├─ service                       // 服务层 提供接口等服务
+└─ admin                         // 后台前端
+```
 
 demo访问：
 [http://mrw.so/54t10i](http://mrw.so/54t10i)（账号密码：demo/123456）
