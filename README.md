@@ -51,7 +51,7 @@ git clone https://github.com/MQEnergy/MQCMS
 
 ##### 进入docker运行命令：
 ```
-docker run -it -v /e/web/MQCMS:/mqcms -p 9502:9502 --name mqserver --entrypoint /bin/sh hyperf/hyperf
+docker run -it -v /e/web/MQCMS/service:/mqcms -p 9502:9502 --name mqserver --entrypoint /bin/sh hyperf/hyperf
 ```
 
 ##### 将Composer镜像设置为阿里云镜像，加速国内下载速度
@@ -64,7 +64,7 @@ php mqcms/bin/composer.phar config -g repo.packagist composer https://mirrors.al
 docker pull redis
 # 进入redis 配置redis可外部访问
 
-docker run -d --privileged=true -p 6379:6379 -v /e/web/MQCMS/docker/conf/redis/redis.conf:/etc/redis/redis.conf --name mqredis redis redis-server /etc/redis/redis.conf --appendonly yes
+docker run -d --privileged=true -p 6379:6379 -v /e/web/MQCMS/service/docker/conf/redis/redis.conf:/etc/redis/redis.conf --name mqredis redis redis-server /etc/redis/redis.conf --appendonly yes
 docker exec -it mqredis /bin/sh
 
 # 修改映射在本地的redis.conf
@@ -92,7 +92,7 @@ php bin/hyperf.php start 或者 php watch (热更新)
 ```
 http://127.0.0.1:9527
 ```
-![](screenshot/home.png)
+![](./screenshot/home.png)
 
 ### 扩展功能
 #### 生成model
