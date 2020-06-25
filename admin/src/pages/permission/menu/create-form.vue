@@ -11,7 +11,7 @@
                 <FormItem label="父节点：" prop="parent_id">
                     <Select v-model="createData.parent_id" clearable>
                         <Option :value="0">作为一级分类</Option>
-                        <Option v-for="(item, index) in menuOptions" :value="item.id" :label="item.title">
+                        <Option v-for="(item, index) in menuOptions" :key="index" :value="item.id" :label="item.title">
                             <span>{{ item.title }}</span>
                             <span style="float:right;color:#ccc">{{ item.alias_title }}</span>
                         </Option>
