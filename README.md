@@ -5,7 +5,7 @@
 MQCMS是一款现代化，快速，高效，灵活，前后端分离，扩展性强的CMS系统。
 MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。
 ### 特别感谢
-本项目基于hyperf框架开发的应用，感谢hyperf的作者提供了这么优秀的框架
+本项目基于hyperf2.0框架开发的应用，感谢hyperf的作者提供了这么优秀的框架
 
 ### 开发文档
 文档正在路上...
@@ -33,41 +33,41 @@ demo访问：
 ![](screenshot/application.png)
 
 ## 一、运行后台前端
-### 进入admin目录
 ```
+进入admin目录
 yarn install / npm install #安装依赖包
 yarn run serve / npm run serve  #运行项目
 ```
 
 ## 二、运行服务端
-### docke环境开发
+### 1、docke环境开发
 在docker环境下开发，window10环境安装`docker desktop for window`,
 window10以下环境安装`docker toolbox`。
 
 
-##### 下载hyperf框架docker镜像
+##### 1）下载hyperf框架docker镜像
 ```
 docker pull hyperf/hyperf
 ```
 
 
-##### 下载mqcms系统到本地
+##### 2）下载mqcms系统到本地
 ```
 # 例如：将项目放在本地e:/web/MQCMS
 git clone https://github.com/MQEnergy/MQCMS
 ```
 
-##### 进入docker运行命令：
+##### 2）进入docker运行命令：
 ```
 docker run -it -v /e/web/MQCMS/service:/mqcms -p 9502:9502 --name mqserver --entrypoint /bin/sh hyperf/hyperf
 ```
 
-##### 将Composer镜像设置为阿里云镜像，加速国内下载速度
+##### 3）将Composer镜像设置为阿里云镜像，加速国内下载速度
 ```
 php mqcms/bin/composer.phar config -g repo.packagist composer https://mirrors.aliyun.com/composer
 ```
 
-##### docker安装redis
+##### 4）docker安装redis
 ```
 docker pull redis
 # 进入redis 配置redis可外部访问
@@ -86,7 +86,7 @@ docker exec -it mqredis /bin/sh
 docker restart mqredis
 ```
 
-##### 进入项目安装依赖启动项目
+##### 5）进入项目安装依赖启动项目
 ```
 docker exec -it mqserver /bin/sh
 cd mqcms
@@ -96,20 +96,20 @@ php bin/hyperf.php migrate
 php bin/hyperf.php start 或者 php watch (热更新)
 ```
 
-##### 浏览器访问项目
+##### 6）浏览器访问项目
 ```
 http://127.0.0.1:9527
 ```
 ![](./screenshot/home.png)
 
-### 扩展功能
-#### 生成model
+### 2、扩展功能
+#### 1）生成model
 ```
 php bin/hyperf.php gen:model --path=app/Model/Common --with-comments category
 ```
 
-#### command命令扩展
-1、创建service
+#### 2）command命令扩展
+2-1、创建service
 ```
 # 查看mq:service命令帮助
 php bin/hyperf.php mq:service --help
@@ -124,7 +124,7 @@ php bin/hyperf.php mq:service -N App\\Service\\Admin FooAdminService FooAdmin
  
 ```
 
-2、创建logic
+2-2、创建logic
 ```
 # 查看mq:logic命令帮助
 php bin/hyperf.php mq:logic --help
@@ -139,7 +139,7 @@ php bin/hyperf.php mq:logic -N App\\Logic\\Admin FooLogic FooService common
  
 ```
 
-3、创建controller
+2-3、创建controller
 ```
 # 查看mq:controller命令帮助
 php bin/hyperf.php mq:controller --help
@@ -154,7 +154,7 @@ php bin/hyperf.php mq:controller -N App\\Controller\\Api\\V1 FooController FooLo
 
 ```
 
-4、安装plugin（待优化）
+2-4、安装plugin（待优化）
 
 本项目支持安装开发的插件分为前后端，插件后台路由建议使用注解路由方式实现，目录结构查看upload/plugins/demo.zip文件
 ```
