@@ -32,6 +32,7 @@ demo访问：
 #### 4、应用中心
 ![](screenshot/application.png)
 
+## 一、运行服务端
 ### docke环境开发
 在docker环境下开发，window10环境安装`docker desktop for window`,
 window10以下环境安装`docker toolbox`。
@@ -198,3 +199,10 @@ http://127.0.0.1:9527/admin/plugins/demo/index/index
     "message": "Hello MQCMS-plugin-demo."
 }
 ```
+## 二、运行后台前端
+##### 1、进入admin目录
+```
+yarn install / npm install #安装依赖包
+yarn run serve / npm run serve  #运行项目
+```
+
