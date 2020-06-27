@@ -1,4 +1,4 @@
-import BasicLayout from '@/layouts/basic-layout';
+import BasicLayout from '@/components/layouts/basic-layout';
 
 const meta = {
     auth: true

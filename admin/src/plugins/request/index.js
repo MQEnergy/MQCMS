@@ -68,18 +68,18 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     response => {
         const dataAxios = response.data;
-        const { code } = dataAxios;
+        const { code, msg, data } = dataAxios;
         if (code === undefined) {
             return dataAxios;
         } else {
             switch (code) {
             case 0:
-                return dataAxios.data;
+                return data;
             case 'xxx':
-                errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`);
+                errorCreate(`[ code: xxx ] ${msg}: ${response.config.url}`);
                 break;
             default:
-                errorCreate(`${dataAxios.msg}: ${response.config.url}`);
+                errorCreate(`${msg}: ${response.config.url}`);
                 break;
             }
         }

@@ -6,7 +6,7 @@ const env = process.env.NODE_ENV;
 
 const Setting = {
     // 部署应用包时的基本 URL
-    publicPath: env === 'development' ? '/' : '/mqcms',
+    publicPath: env === 'development' ? '/' : '/',
     // 生产环境构建文件的目录名
     outputDir: 'dist',
     // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。

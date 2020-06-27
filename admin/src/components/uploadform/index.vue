@@ -296,7 +296,7 @@
                 return this.$refs.videoPlayer.player;
             },
             uploadHostUrl () {
-                return  this.getAppModuleUrl() + this.uploadUrl;
+                return this.getAppApiModuleUrl() + this.uploadUrl;
             }
         },
         mounted () {

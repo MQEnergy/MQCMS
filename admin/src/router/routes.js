@@ -1,4 +1,4 @@
-import BasicLayout from '@/layouts/basic-layout';
+import BasicLayout from '@/components/layouts/basic-layout';
 import dashboard from './modules/dashboard';
 import list from './modules/list';
 import user from './modules/user';

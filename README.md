@@ -91,6 +91,7 @@ docker restart mqredis
 docker exec -it mqserver /bin/sh
 cd mqcms
 php bin/composer.phar install
+php bin/composer.phar update # 更新composer包
 cp .env.example .env
 php bin/hyperf.php migrate
 php bin/hyperf.php start 或者 php watch (热更新)
