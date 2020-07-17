@@ -20,7 +20,7 @@ MQCMS
 ```
 
 demo访问：
-[http://mrw.so/54t10i](http://mrw.so/54t10i)（账号密码：demo/123456）
+[https://sourl.cn/Y7kc6x](https://sourl.cn/Y7kc6x) （账号密码：demo/123456）
 
 ### 应用截图
 #### 1、登录页面
