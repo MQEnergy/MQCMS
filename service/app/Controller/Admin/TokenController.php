@@ -63,39 +63,6 @@ class TokenController extends BaseController
 
     /**
      * @param RequestInterface $request
-     * @throws ClientException
-     */
-    public function check(RequestInterface $request)
-    {
-        AlibabaCloud::accessKeyClient('LTAI4Fhm742Bnr7K8KUdE2Nb', 'xu1MrxlgdGDDE8zeo2e1zKZPhvVUWk')
-            ->regionId('cn-shanghai')
-            ->asDefaultClient();
-
-        try {
-            $result = AlibabaCloud::roa()
-                ->product('Green')
-                ->version('2018-05-09')
-                ->pathPattern('/green/image/asyncscan')
-                ->method('POST')
-                ->options([
-                    'query' => [
-
-                    ]
-                ])
-                ->body('')
-                ->request();
-            print_r($result->toArray());
-            return $result->toArray();
-
-        } catch (ClientException $e) {
-            echo $e->getMessage() . PHP_EOL;
-        } catch (ServerException $e) {
-            echo $e->getMessage() . PHP_EOL;
-        }
-    }
-
-    /**
-     * @param RequestInterface $request
      * @return mixed
      */
     public function producer(RequestInterface $request)
