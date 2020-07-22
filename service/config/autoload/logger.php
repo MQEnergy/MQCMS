@@ -16,43 +16,55 @@ use Monolog\Logger;
 $appEnv = env('APP_ENV', 'dev');
 
 if ($appEnv === 'dev') {
-    $debugFormatter = [
-        'class' => Formatter\JsonFormatter::class,
+    // 错误日志
+    $errorHandler = [
+        'class' => Handler\RotatingFileHandler::class,
         'constructor' => [
-            'batchMode' => Formatter\JsonFormatter::BATCH_MODE_JSON,
-            'appendNewline' => true,
+            'filename' => BASE_PATH . '/runtime/logs/mqcms-error.log',
+            'level' => Logger::ERROR
         ],
-    ];
-    $errorFormatter = [
-        'class' => Formatter\LineFormatter::class,
-        'constructor' => [
-            'allowInlineLineBreaks' => true,
-            'includeStacktraces' => true,
+        'formatter' => [
+            'class' => Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => 'Y-m-d H:i:s',
+                'allowInlineLineBreaks' => true,
+                'includeStacktraces' => true,
+            ],
         ]
-    ];
-    $infoFormatter = [
-        'class' => Formatter\LineFormatter::class,
-        'constructor' => [
-            'allowInlineLineBreaks' => true,
-            'includeStacktraces' => false,
-        ]
-    ];
-    $debugHandler = [
-        'class' => Handler\StreamHandler::class,
-        'constructor' => [
-            'stream' => BASE_PATH . '/runtime/logs/mqcms-debug-' . date('Y-m-d') . '.log',
-            'level' => Logger::DEBUG,
-        ],
-        'formatter' => $debugFormatter,
     ];
 
-    $infoHandler = [
-        'class' => Handler\StreamHandler::class,
+    // debug日志
+    $debugHandler = [
+        'class' => Handler\RotatingFileHandler::class,
         'constructor' => [
-            'stream' => BASE_PATH . '/runtime/logs/mqcms-info-' . date('Y-m-d') . '.log',
+            'filename' => BASE_PATH . '/runtime/logs/mqcms-debug.log',
+            'level' => Logger::DEBUG,
+        ],
+        'formatter' => [
+            'class' => Formatter\JsonFormatter::class,
+            'constructor' => [
+                'batchMode' => Formatter\JsonFormatter::BATCH_MODE_JSON,
+                'appendNewline' => true,
+            ],
+        ],
+    ];
+
+    // 信息日志
+    $infoHandler = [
+        'class' => Handler\RotatingFileHandler::class,
+        'constructor' => [
+            'filename' => BASE_PATH . '/runtime/logs/mqcms-info.log',
             'level' => Logger::INFO
         ],
-        'formatter' => $infoFormatter
+        'formatter' => [
+            'class' => Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => 'Y-m-d H:i:s',
+                'allowInlineLineBreaks' => true,
+            ]
+        ]
     ];
 
     return [
@@ -60,54 +72,52 @@ if ($appEnv === 'dev') {
             'handlers' => [
                 $debugHandler,
                 $infoHandler,
-                [
-                    'class' => Handler\StreamHandler::class,
-                    'constructor' => [
-                        'stream' => BASE_PATH . '/runtime/logs/mqcms-error-' . date('Y-m-d') . '.log',
-                        'level' => Logger::ERROR
-                    ],
-                    'formatter' => $errorFormatter
-                ]
+                $errorHandler
             ]
         ],
     ];
 
 } else {
-    $errorFormatter = [
-        'class' => Formatter\LineFormatter::class,
+    // 错误日志
+    $errorHandler = [
+        'class' => Handler\RotatingFileHandler::class,
         'constructor' => [
-            'allowInlineLineBreaks' => true,
-            'includeStacktraces' => true,
+            'filename' => BASE_PATH . '/runtime/logs/mqcms-error.log',
+            'level' => Logger::ERROR
+        ],
+        'formatter' => [
+            'class' => Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => 'Y-m-d H:i:s',
+                'allowInlineLineBreaks' => true,
+                'includeStacktraces' => true,
+            ],
         ]
     ];
-    $infoFormatter = [
-        'class' => Formatter\LineFormatter::class,
-        'constructor' => [
-            'allowInlineLineBreaks' => true,
-            'includeStacktraces' => false,
-        ],
-    ];
+
+    // 信息日志
     $infoHandler = [
-        'class' => Handler\StreamHandler::class,
+        'class' => Handler\RotatingFileHandler::class,
         'constructor' => [
-            'stream' => BASE_PATH . '/runtime/logs/mqcms-info-' . date('Y-m-d') . '.log',
+            'filename' => BASE_PATH . '/runtime/logs/mqcms-info.log',
             'level' => Logger::INFO
         ],
-        'formatter' => $infoFormatter
+        'formatter' => [
+            'class' => Formatter\LineFormatter::class,
+            'constructor' => [
+                'format' => null,
+                'dateFormat' => 'Y-m-d H:i:s',
+                'allowInlineLineBreaks' => true,
+            ]
+        ]
     ];
 
     return [
         'default' => [
             'handlers' => [
                 $infoHandler,
-                [
-                    'class' => Handler\StreamHandler::class,
-                    'constructor' => [
-                        'stream' => BASE_PATH . '/runtime/logs/mqcms-error-' . date('Y-m-d') . '.log',
-                        'level' => Logger::ERROR
-                    ],
-                    'formatter' => $errorFormatter
-                ]
+                $errorHandler
             ]
         ],
     ];

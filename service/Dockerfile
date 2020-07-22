@@ -16,7 +16,8 @@ ARG timezone
 
 ENV TIMEZONE=${timezone:-"Asia/Shanghai"} \
     COMPOSER_VERSION=1.9.0 \
-    APP_ENV=prod
+    APP_ENV=prod \
+    SCAN_CACHEABLE=(true)
 
 # update
 RUN set -ex \
@@ -53,8 +54,7 @@ WORKDIR /opt/www
 
 COPY .. /opt/www
 RUN composer install --no-dev \
-    && composer dump-autoload -o \
-    && composer init-proxy
+    && composer dump-autoload -o
 
 EXPOSE 9501
 
