@@ -28,7 +28,7 @@ class ServiceCommand extends GeneratorCommand
     /**
      * Execute the console command.
      *
-     * @return null|bool
+     * @return int
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
@@ -45,12 +45,12 @@ class ServiceCommand extends GeneratorCommand
         // code is untouched. Otherwise, we will continue generating this class' files.
         if (($input->getOption('force') === false) && $this->alreadyExists($inputs['name'])) {
             $output->writeln(sprintf('<fg=red>%s</>', $name . ' already exists!'));
-            return false;
+            return 0;
         }
 
         if (!$this->getStub()) {
             $this->output->writeln(sprintf('<fg=red>%s</>', 'module ' . trim($this->input->getArgument('type')) . ' not exists!'));
-            return false;
+            return 0;
         }
 
         // Next, we will generate the path to the location where this class' file should get
@@ -61,6 +61,8 @@ class ServiceCommand extends GeneratorCommand
         file_put_contents($path, $this->buildModelClass($name, $inputs['model']));
 
         $output->writeln(sprintf('<info>%s</info>', $name . ' created successfully.'));
+
+        return 0;
     }
 
     /**
