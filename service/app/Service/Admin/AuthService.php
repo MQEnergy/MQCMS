@@ -22,7 +22,7 @@ class AuthService extends \App\Service\Common\AdminService
     {
         $this->select = ['id', 'status', 'avatar'];
         $this->condition = ['account' => $account];
-        $adminInfo = parent::show();
+        $adminInfo = $this->show();
 
         if ($adminInfo) {
             if ($adminInfo['status'] == 0) {
@@ -47,7 +47,7 @@ class AuthService extends \App\Service\Common\AdminService
             'login_time' => time(),
             'login_ip' => $ip
         ];
-        $lastInsertId = parent::store();
+        $lastInsertId = $this->store();
 
         if (!$lastInsertId) {
             throw new BusinessException(ErrorCode::BAD_REQUEST, '注册失败');
@@ -65,7 +65,7 @@ class AuthService extends \App\Service\Common\AdminService
     {
         $this->select = ['id', 'uuid', 'salt', 'avatar', 'password'];
         $this->condition = ['status' => 1, 'account' => $account];
-        $adminInfo = parent::show();
+        $adminInfo = $this->show();
 
         if (empty($adminInfo)) {
             throw new BusinessException(ErrorCode::BAD_REQUEST, '账号不存在或被限制登录');

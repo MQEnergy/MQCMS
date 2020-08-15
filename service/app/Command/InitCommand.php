@@ -19,7 +19,6 @@ class InitCommand extends HyperfCommand
 {
 
     /**
-     * @Inject()
      * @var AuthService
      */
     public $service;
@@ -47,6 +46,7 @@ class InitCommand extends HyperfCommand
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->service = new AuthService();
         parent::__construct($this->name);
     }
 
@@ -80,7 +80,7 @@ class InitCommand extends HyperfCommand
      */
     public function initMigration()
     {
-        $this->call('migrate');
+        return $this->call('migrate');
     }
 
     /**
@@ -93,7 +93,6 @@ class InitCommand extends HyperfCommand
         $password = $this->ask('密码');
 
         try {
-
             $this->service->register($account, '', $password, '127.0.0.1');
             $this->info('账号：' . $account . ' 密码：' . $password . ' 请记住账号密码');
 
