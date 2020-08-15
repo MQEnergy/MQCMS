@@ -22,8 +22,11 @@ class BusinessException extends ServerException
     {
         if (is_null($message)) {
             $message = ErrorCode::getMessage($code);
+        } else {
+            if (env('APP_ENV') !== 'dev') {
+                $message = ErrorCode::getMessage(ErrorCode::BAD_REQUEST);
+            }
         }
-
         parent::__construct($message, $code, $previous);
     }
 }
