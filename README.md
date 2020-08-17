@@ -10,7 +10,10 @@ MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。
 ### 开发文档
 文档正在路上...
 单独前端项目仓库：
-https://github.com/MQEnergy/MQCMS-admin
+[https://github.com/MQEnergy/MQCMS-admin](https://github.com/MQEnergy/MQCMS-admin)
+
+单独后端项目快速搭建框架：
+[https://github.com/MQEnergy/MQCMS-template](https://github.com/MQEnergy/MQCMS-template)
 
 ### 项目结构
 ```
@@ -207,4 +210,22 @@ http://127.0.0.1:9527/admin/plugins/demo/index/index
     "message": "Hello MQCMS-plugin-demo."
 }
 ```
+## 三、常见问题
+### 1、自动初始化命令后访问接口出现 Signature verification failed
+答：由于初始化命令生成的是后端接口代码，请使用/backend/token/index 生成一个token 然后请求接口在header中加入Authorization参数 值为 Bearer token值
+### 2、访问接口出现 Key may not be empty 
+答：.env配置增加 JWT_FRONTEND_KEY，JWT_BACKEND_KEY 参数值，注意：参数名称FRONTEND, BACKEND对应app\Controller里面的模块名称，如添加其他模块，请增加JWT的其他模块参数
+### 3、start项目出现错误  Uncaught RuntimeException: The class reflector object does not init yet
+答：执行以下命令
+```
+composer dumpautoload -o
+```
+然后在执行
+```
+php bin/hyperf.php start
+```
+### 4、请求接口出现 Connection refused
+答：请在.env中配置redis参数
+### 5、.env配置中的REDIS_ON, APP_BACKEND_MUTEX，APP_FRONTEND_MUTEX有啥作用？
+答：REDIS_ON是是否开启redis参数，设置为true是配合APP_BACKEND_MUTEX或者APP_FRONTEND_MUTEX使用的，具有相同账号在不同设备登录互斥的作用。注意：其中参数名的BACKEND和FRONTEND对应app\Controller里面的模块名称。
 
