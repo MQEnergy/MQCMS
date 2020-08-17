@@ -9,6 +9,7 @@ MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。
 
 ### 开发文档
 文档正在路上...
+
 单独前端项目仓库：
 [https://github.com/MQEnergy/MQCMS-admin](https://github.com/MQEnergy/MQCMS-admin)
 
