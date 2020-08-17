@@ -62,7 +62,7 @@ git clone https://github.com/MQEnergy/MQCMS
 
 ##### 2）进入docker运行命令：
 ```
-docker run -it -v /e/web/MQCMS/service:/mqcms -p 9502:9502 --name mqserver --entrypoint /bin/sh hyperf/hyperf
+docker run -it -v /e/web/MQCMS/service:/mqcms -p 9527:9527 --name mqserver --entrypoint /bin/sh hyperf/hyperf
 ```
 
 ##### 3）将Composer镜像设置为阿里云镜像，加速国内下载速度
@@ -107,6 +107,26 @@ http://127.0.0.1:9527
 ![](./screenshot/home.png)
 
 ### 2、扩展功能
+#### 1）项目初始化
+```
+php bin/hyperf.php mq:init
+
+ 是否执行migrate?:
+  [0] No
+  [1] Yes
+ > 1
+# migrate是数据库迁移
+
+ 是否初始化一个后台账号密码？:
+  [0] No
+  [1] Yes
+ >
+# 选择1 出现如下输入框
+ 账号:
+ > 
+ 密码:
+ > 
+```
 #### 1）生成model
 ```
 php bin/hyperf.php gen:model --path=app/Model/Common --with-comments category
