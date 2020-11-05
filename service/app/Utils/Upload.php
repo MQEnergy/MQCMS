@@ -71,7 +71,7 @@ class Upload
     {
         $this->name = $name;
         $this->uploadPath = $uploadPath;
-        $this->limitSize = config('service.settings.package_max_length', $size);
+        $this->limitSize = config('server.settings.package_max_length', $size);
         $this->limitWidth = $width;
         $this->limitHeight = $height;
         $this->resize = $resize;
