@@ -34,7 +34,8 @@ class MenuService extends \App\Service\Common\MenuService
         array_walk($adminRoleRelation, function ($item) use (&$roleIds) {
             $roleIds[] = $item['role_id'];
         });
-        $menuIdsList = $this->getMenuIdsListByRole($roleIds);
+        $roleService = new RoleService();
+        $menuIdsList = $roleService->getMenuIdsListByRole($roleIds);
         $allMenuList = $this->getMenuListByIds($menuIdsList);
         $accessList = [];
         $menusList = [];
@@ -71,7 +72,7 @@ class MenuService extends \App\Service\Common\MenuService
         }
         switch ($type) {
             case 1:
-                return Common::generateTree($menuList);
+                return Common::g($menuList);
                 break;
             case 2:
                 return $menuList;

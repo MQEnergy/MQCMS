@@ -52,7 +52,7 @@ class Upload
     /**
      * @var array
      */
-    public $limitType = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'mp4', 'avi', 'rmvb'];
+    public $limitType = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'mp4', 'avi', 'rmvb', 'xlsx','xls'];
 
     /**
      * @var string
@@ -79,9 +79,10 @@ class Upload
 
     /**
      * @param RequestInterface $request
-     * @return array|bool
+     * @param string $dirName
+     * @return array
      */
-    public function uploadFile(RequestInterface $request)
+    public function uploadFile(RequestInterface $request, $dirName='')
     {
         if (!$request->hasFile($this->name)) {
             throw new BusinessException(ErrorCode::BAD_REQUEST, '上传文件名称不存在');
@@ -101,14 +102,18 @@ class Upload
         if (!in_array($this->extension, $this->limitType)) {
             throw new BusinessException(ErrorCode::UNAUTHORIZED, '文件上传格式不支持，支持格式：' . implode(', ', $this->limitType));
         }
-
-        $filePath = $this->uploadPath . DIRECTORY_SEPARATOR . date('Y') . DIRECTORY_SEPARATOR . date('m') . DIRECTORY_SEPARATOR . date('d') . DIRECTORY_SEPARATOR;
+        if ($dirName) {
+            $filePath = $this->uploadPath . DIRECTORY_SEPARATOR . $dirName. DIRECTORY_SEPARATOR . date('Y-m-d') . DIRECTORY_SEPARATOR;
+        } else {
+            $filePath = $this->uploadPath . DIRECTORY_SEPARATOR . date('Y-m-d') . DIRECTORY_SEPARATOR;
+        }
         $res = Common::mkDir(BASE_PATH . DIRECTORY_SEPARATOR . $filePath);
         if (!$res) {
             throw new BusinessException(ErrorCode::UNAUTHORIZED, '资源文件夹创建失败，请检查目录权限');
         }
         $fileName = Common::generateUniqid();
         $fileUrl = $filePath . $fileName . '.' . $this->extension;
+
         $request->file($this->name)->moveTo(BASE_PATH . DIRECTORY_SEPARATOR . $fileUrl);
 
         if (!$request->file($this->name)->isMoved()) {
