@@ -3,10 +3,15 @@
 [![Stars](https://img.shields.io/github/stars/MQEnergy/MQCMS)](https://github.com/MQEnergy/MQCMS)
 
 MQCMS是一款现代化，快速，高效，灵活，前后端分离，扩展性强的CMS系统。
-MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。
+MQCMS中的MQ取麻雀拼音首字母。寓意麻雀虽小五脏俱全。 因为工作原因，更新有点慢，请耐心等待，下一版本很快到来。
 ### 特别感谢
 本项目基于hyperf2.0框架开发的应用，感谢hyperf的作者提供了这么优秀的框架
 
+### 产品示例
+基于MQCMS开发的产品示例地址：
+http://www.laidanme.com
+http://www.ucarter.com
+ 
 ### 开发文档
 文档正在路上...
 
